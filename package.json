@@ -37,11 +37,15 @@
     "travis-deploy-once": "^5.0.11"
   },
   "dependencies": {
+    "bootstrap": "^4.3.1",
+    "bootstrap-material-design": "^4.1.1",
     "chalk": "^2.4.2",
     "commander": "^3.0.2",
+    "datatables": "^1.10.18",
     "fs-extra": "^8.1.0",
     "handlebars": "^4.7.6",
-    "highlight.js": "^9.18.1",
+    "highlight.js": "^9.16.2",
+    "jquery": "^3.3.1",
     "marked": "^0.7.0",
     "moment": "^2.24.0",
     "numeral": "^2.0.6",
