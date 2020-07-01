@@ -213,11 +213,11 @@
                         {{#each advisories}}
                         <tr>
                             <th scope="row">
-                                <a href="{{url}}" data-toggle="modal" data-target="#advisory-modal-{{id}}">{{title}}</a>
+                                {{!-- <a href="{{url}}" data-toggle="modal" data-target="#advisory-modal-{{id}}">{{title}}</a> --}}
+                                <a href="{{url}}">{{title}}</a>
                             </th>
                             <td>
-                                <a href="https://npmjs.com/package/{{module_name}}" target="_blank"
-                                    rel="noopener">{{module_name}}</a>
+                                <a href="https://npmjs.com/package/{{module_name}}">{{module_name}}</a>
                             </td>
                             <td data-order="{{severityNumber severity}}"><span
                                     class="badge badge-{{severityClass severity}}">{{severity}}</span></td>
