@@ -21,7 +21,7 @@ program
     'template theme `dark` or `light` (defaults to `light`)'
   )
   .option('-t, --template [handlebars file]', 'handlebars template file')
-  .option('-a, --useLocalAssets', 'copies and references local assets')
+  .option('-n, --nodeModulesPath [nodeModulesPath]', 'copies and references local assets from specified node_modules folder')
   .action(async (cmd, env) => {
     try {
       let data
@@ -34,42 +34,42 @@ program
         return process.exit(1)
       }
 
-      await genReport(data, cmd.output, cmd.template, cmd.theme, cmd.useLocalAssets)
+      await genReport(data, cmd.output, cmd.template, cmd.theme, cmd.nodeModulesPath)
     } catch (err) {
       console.error('Failed to parse NPM Audit JSON!')
       return process.exit(1)
     }
   })
 
-const copyAssets = async (output) => {
+const copyAssets = async (nodeModulesPath, output) => {
   console.log(`output: ${output}`)
   var cssDir = path.join(path.dirname(output), 'css')
   console.log(`cssDir: ${cssDir}`)
   await fs.copy(
-    `bootstrap-material-design/dist/css/bootstrap-material-design.min.css`,
+    `${nodeModulesPath}/bootstrap-material-design/dist/css/bootstrap-material-design.min.css`,
     path.join(cssDir, `bootstrap-material-design.min.css`)
   )
   await fs.copy(
-    `highlight.js/styles/atom-one-dark.css`,
+    `${nodeModulesPath}/highlight.js/styles/atom-one-dark.css`,
     path.join(cssDir, `atom-one-dark.css`)
   )
   await fs.copy(
-    `datatables/media/css/jquery.dataTables.min.css`,
+    `${nodeModulesPath}/datatables/media/css/jnodeModulesPathquery.dataTables.min.css`,
     path.join(cssDir, `datatables.min.css`)
   )
 
   var jsDir = path.join(path.dirname(output), 'js')
   console.log(`jsDir: ${jsDir}`)
   await fs.copy(
-    `datatables/media/js/jquery.dataTables.min.js`,
+    `${nodeModulesPath}/datatables/media/js/jquery.dataTables.min.js`,
     path.join(jsDir, `datatables.min.js`)
   )
   await fs.copy(
-    `jquery/dist/jquery.slim.min.js`,
+    `${nodeModulesPath}/jquery/dist/jquery.slim.min.js`,
     path.join(jsDir, `jquery.slim.min.js`)
   )
   await fs.copy(
-    `bootstrap/dist/js/bootstrap.min.js`,
+    `${nodeModulesPath}/bootstrap/dist/js/bootstrap.min.js`,
     path.join(jsDir, `bootstrap.min.js`)
   )
 
@@ -81,7 +81,7 @@ const genReport = async (
   output = 'npm-audit.html',
   template,
   theme = 'light',
-  useLocalAssets
+  nodeModulesPath
 ) => {
   try {
     if (!data) {
@@ -89,12 +89,12 @@ const genReport = async (
       return process.exit(1)
     }
 
-    if (useLocalAssets) {
-      await copyAssets(output)
+    if (nodeModulesPath) {
+      await copyAssets(nodeModulesPath, output)
     }
     const templateFile = template || `${__dirname}/templates/template.hbs`
 
-    await reporter(data, templateFile, output, theme, useLocalAssets)
+    await reporter(data, templateFile, output, theme, nodeModulesPath)
 
     console.log(`Vulnerability snapshot saved at ${output}`)
     process.exit(0)
