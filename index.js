@@ -42,31 +42,34 @@ program
   })
 
 const copyAssets = async (output) => {
+  console.log(`output: ${output}`)
   var cssDir = path.join(path.dirname(output), 'css')
+  console.log(`cssDir: ${cssDir}`)
   await fs.copy(
-    `${__dirname}/node_modules/bootstrap-material-design/dist/css/bootstrap-material-design.min.css`,
+    `bootstrap-material-design/dist/css/bootstrap-material-design.min.css`,
     path.join(cssDir, `bootstrap-material-design.min.css`)
   )
   await fs.copy(
-    `${__dirname}/node_modules/highlight.js/styles/atom-one-dark.css`,
+    `highlight.js/styles/atom-one-dark.css`,
     path.join(cssDir, `atom-one-dark.css`)
   )
   await fs.copy(
-    `${__dirname}/node_modules/datatables/media/css/jquery.dataTables.min.css`,
+    `datatables/media/css/jquery.dataTables.min.css`,
     path.join(cssDir, `datatables.min.css`)
   )
 
   var jsDir = path.join(path.dirname(output), 'js')
+  console.log(`jsDir: ${jsDir}`)
   await fs.copy(
-    `${__dirname}/node_modules/datatables/media/js/jquery.dataTables.min.js`,
+    `datatables/media/js/jquery.dataTables.min.js`,
     path.join(jsDir, `datatables.min.js`)
   )
   await fs.copy(
-    `${__dirname}/node_modules/jquery/dist/jquery.slim.min.js`,
+    `jquery/dist/jquery.slim.min.js`,
     path.join(jsDir, `jquery.slim.min.js`)
   )
   await fs.copy(
-    `${__dirname}/node_modules/bootstrap/dist/js/bootstrap.min.js`,
+    `bootstrap/dist/js/bootstrap.min.js`,
     path.join(jsDir, `bootstrap.min.js`)
   )
 
