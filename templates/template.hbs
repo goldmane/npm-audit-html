@@ -8,12 +8,22 @@
 
     <!-- Bootstrap CSS -->
     {{#unless nodeModulesPath}}
-    <link rel="stylesheet"
-        href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
-        integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css" />
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/styles/atom-one-dark.min.css">
+        <link rel="stylesheet"
+            href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
+            integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css" />
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/styles/atom-one-dark.min.css">
+        <style>
+            pre {
+                background-color: #333333;
+                padding: 15px;
+            }
+
+            pre code {
+                color: #fff;
+            }
+        </style>
     {{else}}
         <link rel="stylesheet" type="text/css" 
             href="css/bootstrap-material-design.min.css" />
@@ -25,17 +35,6 @@
 
     <title>NPM Audit Report</title>
     <meta name="description" content="{{metadata.vulnerabilities.total}} known vulnerabilities found.">
-
-    <style>
-        pre {
-            background-color: #333333;
-            padding: 15px;
-        }
-
-        pre code {
-            color: #fff;
-        }
-    </style>
 
     {{#if_eq theme 'dark'}}
     <style>

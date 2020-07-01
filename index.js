@@ -58,6 +58,10 @@ const copyAssets = async (nodeModulesPath, output) => {
     `${nodeModulesPath}/datatables/media/css/jquery.dataTables.min.css`,
     path.join(cssDir, `datatables.min.css`)
   )
+  await fs.copy(
+    `${nodeModulesPath}/npm-audit-html/assets/styles.css`,
+    path.join(cssDir, `styles.css`)
+  )
 
   var jsDir = path.join(path.dirname(output), 'js')
   console.log(`jsDir: ${jsDir}`)
@@ -72,6 +76,10 @@ const copyAssets = async (nodeModulesPath, output) => {
   await fs.copy(
     `${nodeModulesPath}/bootstrap/dist/js/bootstrap.min.js`,
     path.join(jsDir, `bootstrap.min.js`)
+  )
+  await fs.copy(
+    `${nodeModulesPath}/npm-audit-html/assets/scripts.js`,
+    path.join(jsDir, `scripts.js`)
   )
 
   console.log('Assets copied')
