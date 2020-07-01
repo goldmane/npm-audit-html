@@ -42,6 +42,7 @@ program
   })
 
 const copyAssets = async (nodeModulesPath, output) => {
+  console.log(`nodeModulesPath: ${nodeModulesPath}`)
   console.log(`output: ${output}`)
   var cssDir = path.join(path.dirname(output), 'css')
   console.log(`cssDir: ${cssDir}`)
@@ -54,7 +55,7 @@ const copyAssets = async (nodeModulesPath, output) => {
     path.join(cssDir, `atom-one-dark.css`)
   )
   await fs.copy(
-    `${nodeModulesPath}/datatables/media/css/jnodeModulesPathquery.dataTables.min.css`,
+    `${nodeModulesPath}/datatables/media/css/jquery.dataTables.min.css`,
     path.join(cssDir, `datatables.min.css`)
   )
 
